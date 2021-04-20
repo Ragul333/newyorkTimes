@@ -38,7 +38,7 @@ function create(section){
 }
 
 
-
+create('home')
 
 
 
