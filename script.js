@@ -1,5 +1,5 @@
-var apiKey = `NS8YX8C3OXl9FAsd938KHOG4fAC98lBS`;
-var nyApi = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${apiKey}`;
+
+var nyApi = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=NS8YX8C3OXl9FAsd938KHOG4fAC98lBS`;
 
 async function nyPaper(nyApi){
 try{
@@ -14,13 +14,6 @@ try{
 
 
 
-/* nyPaper(nyApi).then((subject)=>{
-
-    for(let i=0; i<subject.results.length; i++){
-        console.log(JSON.stringify(subject.results[i].section));
-    }
-}) ; */
-
 
 let home = document.getElementById('home');
 let arts = document.getElementById('arts');
@@ -31,86 +24,21 @@ let ul = createClass('ul','navbar-nav');
 let li = createClass('li','nav-item');
 let a = document.getElementsByTagName('a');
 
-function createHome(){
-
-    var homeApi = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${apiKey}`;
+function create(section){
+    document.getElementById('container').innerHTML = '';
+    var homeApi = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=NS8YX8C3OXl9FAsd938KHOG4fAC98lBS`;
     nyPaper(homeApi).then((subject)=>{
 
     for(let i=0; i<subject.results.length; i++){
        let subv = subject.results[i];
-       //let sub = (JSON.stringify(subv));
        createCard((subv))
     }
 }) ;
 
 }
-createHome()
-home.setAttribute('onclick','createHome()');
-
-function createArts(){
-
-    var artsApi = `https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=${apiKey}`;
-    nyPaper(artsApi).then((subject)=>{
-
-        for(let i=0; i<subject.results.length; i++){
-           let subv = subject.results[i];
-           //let sub = (JSON.stringify(subv));
-           createCard((subv))
-        }
-    }) ;
-
-}
-
-arts.setAttribute('onclick','createArts()');
 
 
-function createScience(){
 
-    var scienceApi = `https://api.nytimes.com/svc/topstories/v2/science.json?api-key=${apiKey}`;
-    nyPaper(scienceApi).then((subject)=>{
-
-        for(let i=0; i<subject.results.length; i++){
-           let subv = subject.results[i];
-           //let sub = (JSON.stringify(subv));
-           createCard((subv))
-        }
-    }) ;
-
-}
-
-science.setAttribute('onclick','createScience()');
-
-
-function createUs(){
-
-    var usApi = `https://api.nytimes.com/svc/topstories/v2/us.json?api-key=${apiKey}`;
-    nyPaper(usApi).then((subject)=>{
-
-        for(let i=0; i<subject.results.length; i++){
-           let subv = subject.results[i];
-           createCard((subv))
-        }
-    }) ;
-
-}
-
-us.setAttribute('onclick','createUs()');
-
-
-function createWorld(){
-
-    var worldApi = `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${apiKey}`;
-    nyPaper(worldApi).then((subject)=>{
-
-        for(let i=0; i<subject.results.length; i++){
-           let subv = subject.results[i];
-           createCard((subv))
-        }
-    }) ;
-
-}
-
-world.setAttribute('onclick','createWorld()');
 
 
 
@@ -149,9 +77,6 @@ function createCard(pasi){
     row.append(coltexts,colImg);
     card.append(row);
     container.append(card)
-    
-   
-    
-    
+
 
 } 
